@@ -1,5 +1,7 @@
 package com.antoine;
 
+import com.sun.corba.se.spi.legacy.connection.LegacyServerSocketEndPointInfo;
+
 import java.util.List;
 import java.util.Scanner;
 
@@ -8,16 +10,15 @@ import java.util.Scanner;
  */
 public class ListeEtudiant {
 
-    int numero;
-    String prenom;
-    String nom;
-    ListeEtudiant suivant;
+    private int numero;
+    private String prenom;
+    private String nom;
+    private ListeEtudiant suivant;
 
     public ListeEtudiant(int numero, String prenom, String nom){
         this.numero = numero;
         this.prenom = prenom;
         this.nom = nom;
-
     }
 
     ////////////////////////////////////////////////////
@@ -45,22 +46,37 @@ public class ListeEtudiant {
 
         return nom;
     }
+
+    public ListeEtudiant getSuivant() {
+        return suivant;
+    }
+
+    public void setSuivant(ListeEtudiant suivant) {
+        this.suivant = suivant;
+    }
     //////////////////////////////////////////////////////
 
 
 
 
-    public void ajouteEtudiantDebut(ListeEtudiant liste, int numero, String prenom, String nom){
+    public ListeEtudiant ajouteEtudiantDebut(ListeEtudiant liste, int numero, String prenom, String nom){
+        ListeEtudiant maliste = new ListeEtudiant(numero, prenom, nom);
+        maliste.setSuivant(liste);
+        return maliste;
 
     }
 
     public void ajouteEtudiantFin(ListeEtudiant liste, int numero, String prenom, String nom){
-
+        ListeEtudiant maliste = new ListeEtudiant(numero, prenom, nom);
+        liste.setSuivant(maliste);
     }
 
     public ListeEtudiant getEtudiant (ListeEtudiant liste, int numero){
-        // permet d'obtenir la liste d
+        // EN partant du numéro de la listen, on réccupère les infos étudiantes
 
+        ListeEtudiant etudiantt = new ListeEtudiant(numero, prenom, nom);
+
+        return etudiantt;
     }
 
     public void afficheListe (ListeEtudiant maliste){

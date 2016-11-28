@@ -76,7 +76,12 @@ public class ListeEtudiant {
     }
 
     public void afficheListe (ListeEtudiant maliste){
-
+        if(maliste.suivant != null){  // Fixed
+            System.out.println(maliste.nom + " "+maliste.prenom+" numéro : "+maliste.numero);
+            afficheListe(maliste.suivant);
+        }else{
+            System.out.println("fin");
+        }
     }
 
 

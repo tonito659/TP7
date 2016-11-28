@@ -1,10 +1,5 @@
 package com.antoine;
 
-import com.sun.corba.se.spi.legacy.connection.LegacyServerSocketEndPointInfo;
-
-import java.util.List;
-import java.util.Scanner;
-
 /**
  * Created by Antoine on 25/11/2016.
  */
@@ -38,14 +33,9 @@ public class ListeEtudiant {
         this.prenom = prenom;
     }
 
-    public void setNom(String nom) {
-        this.nom = nom;
-    }
+    public void setNom(String nom) { this.nom = nom;}
 
-    public String getNom() {
-
-        return nom;
-    }
+    public String getNom() { return nom;}
 
     public ListeEtudiant getSuivant() {
         return suivant;
@@ -71,12 +61,18 @@ public class ListeEtudiant {
         liste.setSuivant(maliste);
     }
 
-    public ListeEtudiant getEtudiant (ListeEtudiant liste, int numero){
+    public String getEtudiant (ListeEtudiant liste, int numero){
         // EN partant du numéro de la listen, on réccupère les infos étudiantes
+        // Attention, aucun check implémenté si l'etudiant n'est pas dans la liste // Fixed
+        if (liste.numero == numero){
+            return (liste.nom + " " + liste.prenom);
 
-        ListeEtudiant etudiantt = new ListeEtudiant(numero, prenom, nom);
-
-        return etudiantt;
+        }else if(liste.suivant != null){  // Fixed
+            getEtudiant(liste.suivant, numero);
+            return null;
+        }else{
+            return "L'étudiant n'est pas là";
+        }
     }
 
     public void afficheListe (ListeEtudiant maliste){

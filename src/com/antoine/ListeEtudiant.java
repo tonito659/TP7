@@ -1,8 +1,5 @@
 package com.antoine;
 
-/**
- * Created by Antoine on 25/11/2016.
- */
 public class ListeEtudiant {
 
     private int numero;
@@ -10,7 +7,7 @@ public class ListeEtudiant {
     private String nom;
     private ListeEtudiant suivant;
 
-    public ListeEtudiant(int numero, String prenom, String nom){
+    private ListeEtudiant(int numero, String prenom, String nom){
         this.numero = numero;
         this.prenom = prenom;
         this.nom = nom;
@@ -41,7 +38,7 @@ public class ListeEtudiant {
         return suivant;
     }
 
-    public void setSuivant(ListeEtudiant suivant) {
+    private void setSuivant(ListeEtudiant suivant) {
         this.suivant = suivant;
     }
     //////////////////////////////////////////////////////
@@ -61,7 +58,7 @@ public class ListeEtudiant {
         liste.setSuivant(maliste);
     }
 
-    public String getEtudiant (ListeEtudiant liste, int numero){
+    private String getEtudiant (ListeEtudiant liste, int numero){
         // EN partant du numéro de la listen, on réccupère les infos étudiantes
         // Attention, aucun check implémenté si l'etudiant n'est pas dans la liste // Fixed
         if (liste.numero == numero){
@@ -75,18 +72,20 @@ public class ListeEtudiant {
         }
     }
 
-    public void afficheListe (ListeEtudiant maliste){
+    private void afficheListe (ListeEtudiant maliste){
         if(maliste.suivant != null){  // Fixed
             System.out.println(maliste.nom + " "+maliste.prenom+" numéro : "+maliste.numero);
             afficheListe(maliste.suivant);
-        }else{
-            System.out.println("fin");
-        }
+        }else System.out.println("fin");
     }
 
 
 
     public void trieListeParNumero (ListeEtudiant maliste){
+        // idée pas propre : créer un nouvel objet, parcourir toute maliste et remplir avec le premier plus petit, continuer
+        // en prenant le second et ainsi de suite
+
+        // implémenter trieListeParNumerobis, obligé
 
     }
 

@@ -58,17 +58,18 @@ public class ListeEtudiant {
         liste.setSuivant(maliste);
     }
 
-    private String getEtudiant (ListeEtudiant liste, int numero){
+    private ListeEtudiant getEtudiant (ListeEtudiant liste, int numero){
         // EN partant du numéro de la listen, on réccupère les infos étudiantes
         // Attention, aucun check implémenté si l'etudiant n'est pas dans la liste // Fixed
         if (liste.numero == numero){
-            return (liste.nom + " " + liste.prenom);
+            ListeEtudiant newliste = new ListeEtudiant(numero, liste.prenom, liste.nom);
+            return newliste;
 
         }else if(liste.suivant != null){  // Fixed
             getEtudiant(liste.suivant, numero);
             return null;
         }else{
-            return "L'étudiant n'est pas là";
+            return null;
         }
     }
 
@@ -88,5 +89,7 @@ public class ListeEtudiant {
         // implémenter trieListeParNumerobis, obligé
 
     }
+    public void ajouteListeTrie(ListeEtudiant liste,int numero , String prenom, String nom){
 
+    }
 }

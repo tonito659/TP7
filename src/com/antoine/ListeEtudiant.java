@@ -85,7 +85,12 @@ public class ListeEtudiant {
     public void trieListeParNumero (ListeEtudiant maliste){
         // idée pas propre : créer un nouvel objet, parcourir toute maliste et remplir avec le premier plus petit, continuer
         // en prenant le second et ainsi de suite
-
+        // parcourage de liste
+        int i = 0;
+        while( maliste !=null ){
+            i++;
+            maliste = maliste.suivant;
+        }
         // implémenter trieListeParNumerobis, obligé
 
     }

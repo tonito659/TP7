@@ -95,6 +95,8 @@ public class ListeEtudiant {
 
     }
     public void ajouteListeTrie(ListeEtudiant liste,int numero , String prenom, String nom){
+        ajouteEtudiantFin(liste, numero, prenom, nom);
+        trieListeParNumero(liste);
 
     }
 }

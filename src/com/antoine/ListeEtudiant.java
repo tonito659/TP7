@@ -69,6 +69,7 @@ public class ListeEtudiant {
             getEtudiant(liste.suivant, numero);
             return null;
         }else{
+            System.out.print("ERR 404");
             return null;
         }
     }
@@ -82,17 +83,36 @@ public class ListeEtudiant {
 
 
 
-    public void trieListeParNumero (ListeEtudiant maliste){
-        // idée pas propre : créer un nouvel objet, parcourir toute maliste et remplir avec le premier plus petit, continuer
-        // en prenant le second et ainsi de suite
-        // parcourage de liste
-        int i = 0;
-        while( maliste !=null ){
-            i++;
+    public ListeEtudiant trieListeParNumero (ListeEtudiant maliste){
+        // Tri par insertion
+        // implémenter trieListeParNumerobis, obligé
+        int i = maliste.numero;
+        while (maliste.suivant != null){
+            if (maliste.numero < i){
+                i = maliste.numero;
+            }
             maliste = maliste.suivant;
         }
-        // implémenter trieListeParNumerobis, obligé
+        ListeEtudiant liste_tri_debut = getEtudiant(maliste,i);
+        maliste = trieListeParNumerobis(maliste,liste_tri_debut);
+        return maliste;
+    }
 
+    static ListeEtudiant trieListeParNumerobis(ListeEtudiant a,ListeEtudiant l){
+        //Qu’est-ce que c’est que ce pays ? C’est pas possible. Il fait au moins... -8000 ! -Numérobis (embauché pour trier cette fois)
+        ListeEtudiant t,u,x;
+        while(a.suivant!=null){
+            t=a.suivant; // élément à insérer
+            u=t.suivant;
+            a.suivant=u; // supprimer cet élément de la liste a
+                         // chercher la place de t.v dans la liste que l'on trie
+            for(x=l;x.suivant!=null;x=x.suivant) // On peut faire ça et c'est fou
+                if (x.suivant.numero > t.numero)break;
+            // insérer t après x
+            t.suivant=x.suivant;
+            x.suivant=t;
+        }
+        return(l);
     }
     public void ajouteListeTrie(ListeEtudiant liste,int numero , String prenom, String nom){
         ajouteEtudiantFin(liste, numero, prenom, nom);
